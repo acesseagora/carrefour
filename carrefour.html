@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão de Crédito Carrefour | Limite de até R$ 2.680,00</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --carrefour-red: #e31837;
+            --carrefour-blue: #00539f;
+            --carrefour-dark: #1a1a1a;
+            --carrefour-light: #f8f9fa;
+            --carrefour-success: #28a745;
+            --carrefour-border: #e0e0e0;
+            --carrefour-card-bg: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--carrefour-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--carrefour-blue);
+        }
+        
+        .logo-highlight {
+            color: var(--carrefour-red);
+        }
+        
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-light);
+            background: #f8f8f8;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 60px 0;
+        }
+        
+        .hero-content {
+            flex: 1;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-image img:hover {
+            transform: perspective(1000px) rotateY(0);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--carrefour-dark);
+            line-height: 1.2;
+        }
+        
+        .highlight {
+            color: var(--carrefour-red);
+            font-weight: 800;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+        
+        /* Benefits */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+        
+        .benefit {
+            background: var(--carrefour-card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .benefit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit i {
+            font-size: 2.5rem;
+            color: var(--carrefour-blue);
+            margin-bottom: 20px;
+            background: rgba(0, 83, 159, 0.1);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            text-align: center;
+        }
+        
+        .benefit h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* Form Section */
+        .form-section {
+            background: var(--carrefour-card-bg);
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--carrefour-red), var(--carrefour-blue));
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--carrefour-blue);
+            font-size: 2rem;
+        }
+        
+        .cpf-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        input {
+            padding: 18px;
+            border: 2px solid var(--carrefour-border);
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            border-color: var(--carrefour-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 83, 159, 0.1);
+        }
+        
+        button {
+            background: linear-gradient(to right, var(--carrefour-red), var(--carrefour-blue));
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        button:hover::before {
+            left: 100%;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: #f0fff4;
+            border-radius: 12px;
+            margin-top: 25px;
+            border-left: 4px solid var(--carrefour-success);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .checkout-btn {
+            background: linear-gradient(to right, var(--carrefour-success), #20c997);
+            margin-top: 15px;
+        }
+        
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8f8f8;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .feature {
+            background: var(--carrefour-card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature h3 {
+            color: var(--carrefour-blue);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .feature ul {
+            list-style: none;
+        }
+        
+        .feature li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .feature i {
+            color: var(--carrefour-success);
+            font-size: 18px;
+            margin-top: 4px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--carrefour-dark);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-links h4 {
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-image img {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .form-section {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .form-title {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-text">CARREFOUR<span class="logo-highlight">BANCO</span></div>
+                </div>
+                <div class="secure-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>Ambiente 100% Seguro</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Cartão de Crédito <span class="highlight">Carrefour</span></h1>
+                <p class="subtitle">Liberamos hoje até <span class="highlight">R$ 2.680,00</span> em limite de crédito mediante análise do seu score!</p>
+                
+                <div class="benefits">
+                    <div class="benefit">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>Cartão Isento de Anuidade</h3>
+                        <p>Zero custo de manutenção com pagamento em dia</p>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-piggy-bank"></i>
+                        <h3>Cashback em Compras</h3>
+                        <p>Receba parte do valor gasto de volta todo mês</p>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-tags"></i>
+                        <h3>Ofertas Exclusivas</h3>
+                        <p>Descontos especiais para titulares do cartão</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://storage.googleapis.com/cms-portalpublico-csf-prd/sites/247553ba-cartao-carrefour-garanta-o-seu.webp" alt="Cartão Carrefour">
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2 class="form-title">Solicite seu cartão agora mesmo!</h2>
+            <div class="cpf-form">
+                <div class="input-group">
+                    <label for="cpf">Digite seu CPF:</label>
+                    <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14">
+                </div>
+                <button id="consultar-btn">
+                    <i class="fas fa-search"></i> Consultar Disponibilidade
+                </button>
+                
+                <div id="success-message" class="success-message">
+                    <p><i class="fas fa-check-circle"></i> Parabéns, você tem direito ao cartão Carrefour, de acordo com a análise do seu CPF. Deixe sempre sua fatura em dia. Confiamos em você. Temos uma taxa de envio.</p>
+                    <button id="checkout-btn" class="checkout-btn">
+                        <i class="fas fa-credit-card"></i> Pagar taxa única R$26,98 e solicitar envio do cartão
+                    </button>
+                </div>
+            </div>
+            
+            <div class="trust-badges">
+                <div class="badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Dados protegidos por criptografia</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-lock"></i>
+                    <span>Transações seguras</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Privacidade garantida</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="features">
+            <div class="feature">
+                <h3>Vantagens do Cartão</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <span>Aprovação rápida mediante análise de score</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Limite de até R$ 2.680,00 liberado na hora</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Programa de cashback em compras</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Descontos exclusivos no Carrefour</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Cartão Visa internacional</span></li>
+                </ul>
+            </div>
+            
+            <div class="feature">
+                <h3>Como Funciona</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <span>Preencha seu CPF no campo acima</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Nossa sistema faz uma análise rápida</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Confirme seus dados pessoais</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Pague a taxa de emissão de R$ 26,98</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Receba seu cartão em casa</span></li>
+                </ul>
+            </div>
+            
+            <div class="feature">
+                <h3>Benefícios Exclusivos</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <span>Descontos em combustível</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Ofertas especiais toda semana</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Programa de pontos acumulativos</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Seguro de proteção de compras</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Atendimento especializado 24h</span></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">CARREFOUR</div>
+                    <p>O Cartão Carrefour é emitido por [Nome do Banco Emissor], CNPJ: [CNPJ do Banco Emissor]</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="#">Quem somos</a></li>
+                        <li><a href="#">Trabalhe conosco</a></li>
+                        <li><a href="#">Termos de uso</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Ajuda</h4>
+                    <ul>
+                        <li><a href="#">Perguntas frequentes</a></li>
+                        <li><a href="#">Fale conosco</a></li>
+                        <li><a href="#">Canais de atendimento</a></li>
+                        <li><a href="#">Ouvidoria</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Carrefour © 2025 - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Formatação do CPF
+            const cpfInput = document.getElementById('cpf');
+            cpfInput.addEventListener('input', function() {
+                let value = cpfInput.value.replace(/\D/g, '');
+                
+                if (value.length > 11) {
+                    value = value.slice(0, 11);
+                }
+                
+                if (value.length > 9) {
+                    value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+                } else if (value.length > 6) {
+                    value = value.replace(/(\d{3})(\d{3})(\d+)/, '$1.$2.$3');
+                } else if (value.length > 3) {
+                    value = value.replace(/(\d{3})(\d+)/, '$1.$2');
+                }
+                
+                cpfInput.value = value;
+            });
+            
+            // Consulta de CPF
+            const consultarBtn = document.getElementById('consultar-btn');
+            const successMessage = document.getElementById('success-message');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            consultarBtn.addEventListener('click', function() {
+                const cpf = cpfInput.value.replace(/\D/g, '');
+                
+                if (cpf.length !== 11) {
+                    alert('Por favor, digite um CPF válido com 11 dígitos.');
+                    return;
+                }
+                
+                // Simulação de consulta - sempre retorna sucesso para este exemplo
+                successMessage.style.display = 'block';
+                
+                // Rolar para a mensagem de sucesso
+                successMessage.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Redirecionamento para o checkout
+            checkoutBtn.addEventListener('click', function() {
+                alert('Redirecionando para o checkout da Kiwify...');
+                // window.location.href = 'https://seu-link-kiwify.aqui'; // Descomente e adicione seu link
+            });
+        });
+    </script>
+</body>
+</html>
